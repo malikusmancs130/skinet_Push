@@ -13,10 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[Controller]")]
-
-    public class ProductsController : ControllerBase
+    public class ProductsController : BaseApiController
     {
         //Introduce Generics:
 
