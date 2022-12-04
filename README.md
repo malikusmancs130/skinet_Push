@@ -11,12 +11,12 @@ postman is tool for testing API's. here are some endpoints which i build yet.
 dotnet build : for building project
 dotnet watch run : check changes along side  with save
 
-# Docker
+# Git
 
-Docker Status
-Docker add .
-Docker commit -m "Your Message"
-Docker Push origion master
+Git Status
+Git add .
+Git commit -m "Your Message"
+Git Push origion master
 
 # EF migrations
 
