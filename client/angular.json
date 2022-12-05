@@ -70,7 +70,7 @@
             "production": {
               "browserTarget": "client:build:production",
               "sslKey": "ssl/server.key",
-              "sslCert": "ssl/server.key",
+              "sslCert": "ssl/server.crt",
               "ssl": true
             },
             "development": {
