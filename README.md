@@ -20,4 +20,20 @@ Git Push origion master
 
 # EF migrations
 
-# 
+# Angular Extension
+
+install Angular language service and snippet for help.
+
+# Angular Basics
+
+For creating Components: 
+
+ng g c component-name  ( Use Pascal case for naming convention)
+if you want to skip any file e.g test ts or any. just use:
+
+ng g c component-name --skip-tests
+
+
+# CSS
+
+- flexboxfroggy
