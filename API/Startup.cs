@@ -41,10 +41,10 @@ namespace API
 
             services.AddSwaggerDocumentation();
 
-            services.AddCors(options =>
+           services.AddCors(options =>
             {
                 options.AddPolicy("CorsPolicy",
-                policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+                policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
             });
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddDbContext<StoreContext>(x => x.UseSqlite(_config.GetConnectionString("Default")));
