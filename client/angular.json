@@ -69,8 +69,8 @@
           "configurations": {
             "production": {
               "browserTarget": "client:build:production",
-              "sslKey": "./ssl/server.key",
-              "sslCert": "./ssl/server.crt",
+              "sslKey": "ssl/server.key",
+              "sslCert": "ssl/server.key",
               "ssl": true
             },
             "development": {
