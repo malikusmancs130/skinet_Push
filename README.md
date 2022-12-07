@@ -32,8 +32,9 @@ ng g c component-name  ( Use Pascal case for naming convention)
 if you want to skip any file e.g test ts or any. just use:
 
 ng g c component-name --skip-tests
-
-
+ng g m core (Create core module)
+ng g c shop --flat --skip-tests
+ng g s shop --flat --skip-tests (it will create service inside the shop folder. Flat will not allow him to add new folder)
 # CSS
 
 - flexboxfroggy

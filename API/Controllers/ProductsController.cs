@@ -86,7 +86,7 @@ namespace API.Controllers
         [HttpGet("types")]
         public async Task<ActionResult<List<ProductType>>> GetAllProductTypes()
         {
-            return Ok(await _productBrandRepo.ListAllAsync());
+            return Ok(await _productTypeRepo.ListAllAsync());
         }
     }
 }
