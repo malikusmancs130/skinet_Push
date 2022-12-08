@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { delay, map } from 'rxjs/operators';
 import { IBrand } from '../shared/models/brands';
 import { IPagination } from '../shared/models/pagination';
+import { IProduct } from '../shared/models/product';
 import { IType } from '../shared/models/productType';
 import { ShopParams } from '../shared/models/shopParams';
 
@@ -15,42 +16,43 @@ export class ShopService {
 
   constructor(private http: HttpClient) { }
 
-  getProducts(shopParams:ShopParams) {
+  getProducts(shopParams: ShopParams) {
     let params = new HttpParams();
 
-    if (shopParams.brandId !==0)
-    {
-      params =params.append('brandId', shopParams.brandId.toString());
+    if (shopParams.brandId !== 0) {
+      params = params.append('brandId', shopParams.brandId.toString());
     }
-    if (shopParams.typeId !==0)
-    {
-      params =params.append('typeId', shopParams.typeId.toString());
+    if (shopParams.typeId !== 0) {
+      params = params.append('typeId', shopParams.typeId.toString());
     }
 
-    if(shopParams.search){
+    if (shopParams.search) {
       params = params.append('search', shopParams.search);
     }
-     
-      params =params.append('sort', shopParams.sort);
-      params=params.append('pageIndex', shopParams.pageNumber.toString());
-      params=params.append('pageIndex', shopParams.pageSize.toString());
- 
-    return this.http.get<IPagination>(this.baseUrl + 'products', {observe: 'response', params})
+
+    params = params.append('sort', shopParams.sort);
+    params = params.append('pageIndex', shopParams.pageNumber.toString());
+    params = params.append('pageIndex', shopParams.pageSize.toString());
+
+    return this.http.get<IPagination>(this.baseUrl + 'products', { observe: 'response', params })
       .pipe(
-        map( response => {
-           return response.body ;
-          }
+        map(response => {
+          return response.body;
+        }
         )
       );
   }
 
-  getBrands(){
+  getBrands() {
     return this.http.get<IBrand[]>(this.baseUrl + 'products/brands')
   }
 
-  getTypes(){
+  getTypes() {
     return this.http.get<IType[]>(this.baseUrl + 'products/types')
   }
 
+  getProduct(id: number) {
+    return this.http.get<IProduct>(this.baseUrl + 'products/' + id)
+  }
 
 }

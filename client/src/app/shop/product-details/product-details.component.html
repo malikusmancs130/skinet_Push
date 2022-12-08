@@ -1,0 +1,35 @@
+<div class="row" *ngIf="product">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md">
+                <div col="6">
+                    <img src="{{product.pictureUrl}}" alt="{{product.name}}">
+                </div>
+            </div>
+            <div class="col-md">
+                <div col="6">
+                    <h3>{{product.name}}</h3>
+                    <h3>{{product.price | currency}}</h3>
+                    <div class="d-flex justify-content-start align-items-center">
+                        <i class="fa fa-minus-circle text-warning" style="cursor: pointer; font-size:2em; margin-right: 0.3em;"> </i>
+                        <span class="" style="font-size: 1.5em; font-weight: bold;">2</span>
+                        <i class="fa fa-plus-circle text-warning" style="cursor: pointer; font-size:2em; margin-left:0.3em; margin-right: 0.3em; ">
+                        </i>
+                        <button class="btn btn-outline-secondary btn-lg" style="margin-left: 0.3em;">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+    <div class="row mt-5">
+        <div class="col-12 ml-3">
+            <h4>Description</h4>
+            <h6>{{product.description}}</h6>
+        </div>
+    </div>
+    </div>
+</div>
+
+  
