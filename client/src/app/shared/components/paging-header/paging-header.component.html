@@ -1,4 +1,4 @@
-<header>
+<header style="margin-top:10px ;">
     <span *ngIf="totalCount && totalCount > 0">
         Showing
         <strong>
@@ -9,10 +9,10 @@
           : pageNumber*pageSize
         }}
     </strong> of 
-        <strong>{{this.totalCount}}</strong> Results.
+        <strong   style="color: rgb(14, 14, 14);">{{this.totalCount}}</strong> Results.
     </span>
 
-    <span *ngIf="totalCount === 0">
+    <span *ngIf="totalCount === 0"   style="color: red;">
         There are <strong> 0 </strong> Results found against this filter.
     </span>
 </header>
