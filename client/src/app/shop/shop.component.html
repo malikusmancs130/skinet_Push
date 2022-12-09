@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
         <section class="col-3">
-            <h5 class="text-warning ml-3"  style="margin-top:40px ;"> Sorts</h5>
+            <h5 class="text-warning ml-3"  style="margin-top:10px ;"> Sorts</h5>
             <select class="custom-select mb-3" (change)="onSortSelected($event)">
                 <option *ngFor="let sortOption of sortOptions" [value]="sortOption.value">
                     {{sortOption.name}}
@@ -24,13 +24,13 @@
         </section>
         <section class="col-9">
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col">
                         <app-paging-header [totalCount]="totalCount" [pageSize]="this.shopParams.pageSize"
                             [pageNumber]="this.shopParams.pageNumber"></app-paging-header>
 
                     </div>
                     <div class="col"  style="margin-top:5px ;">
-                        <input (keyup.enter)="onSearch()" class="form-control mr-2" #search style="width:500px"
+                        <input (keyup.enter)="onSearch()" class="form-control mr-2" #search style="width:300px"
                             placeholder="Search" type="text">
                     </div>
                     <div class="col" >
