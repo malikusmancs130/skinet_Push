@@ -38,3 +38,8 @@ ng g s shop --flat --skip-tests (it will create service inside the shop folder. 
 # CSS
 
 - flexboxfroggy
+
+# Bootstrap Theme
+
+By using this website, we can change anytheme design. Just go to angular json file, where we define bootswatch change theme name and reload the application. everything is setup.
+ https://bootswatch.com/
