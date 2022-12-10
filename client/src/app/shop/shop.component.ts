@@ -18,7 +18,7 @@ export class ShopComponent implements OnInit {
     this.getTypes();
     this.getProducts();
   }
-  @ViewChild('search') searchTerm: ElementRef;
+  @ViewChild('search', {static:false}) searchTerm: ElementRef;
   brands: IBrand[];
   types: IType[];
   products: IProduct[];

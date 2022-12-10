@@ -16,7 +16,10 @@ export class ProductDetailsComponent implements OnInit {
   ngOnInit(){
     this.loadProductById();
   }
-constructor(private shopService: ShopService, private activateRoute : ActivatedRoute , private bcService : BreadcrumbService){}
+constructor(private shopService: ShopService, private activateRoute : ActivatedRoute , private bcService : BreadcrumbService)
+{
+  this.bcService.set('@productDetails',' ');
+}
 
 loadProductById(){
   this.shopService.getProduct(+this.activateRoute.snapshot.paramMap.get('id')).subscribe(product =>
