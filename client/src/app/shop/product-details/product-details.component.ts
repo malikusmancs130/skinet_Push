@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { BasketService } from 'src/app/basket/basket.service';
 import { IProduct } from 'src/app/shared/models/product';
 import { BreadcrumbService } from 'xng-breadcrumb';
 import { ShopService } from '../shop.service';
@@ -10,26 +11,43 @@ import { ShopService } from '../shop.service';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-  product:IProduct
+  product: IProduct
 
-  
-  ngOnInit(){
+  quantity = 1;
+
+
+  ngOnInit() {
     this.loadProductById();
   }
-constructor(private shopService: ShopService, private activateRoute : ActivatedRoute , private bcService : BreadcrumbService)
-{
-  this.bcService.set('@productDetails',' ');
-}
+  constructor(private shopService: ShopService, private activateRoute: ActivatedRoute,
+    private bcService: BreadcrumbService,
+    private basketService: BasketService) {
+    this.bcService.set('@productDetails', ' ');
+  }
 
-loadProductById(){
-  this.shopService.getProduct(+this.activateRoute.snapshot.paramMap.get('id')).subscribe(product =>
+  addItemToBasket() {
+    this.basketService.addItemToBasket(this.product, this.quantity);
+  }
+
+  incrementQuantity() {
+    this.quantity++;
+  }
+
+  decrementQuantity() {
+    if(this.quantity > 1)
     {
-      this.product=product
+      this.quantity--;
+    }
+  }
+
+  loadProductById() {
+    this.shopService.getProduct(+this.activateRoute.snapshot.paramMap.get('id')).subscribe(product => {
+      this.product = product
       this.bcService.set('@productDetails', product.name);
-    },error => {
+    }, error => {
 
       console.error();
-});
-}
+    });
+  }
 
 }

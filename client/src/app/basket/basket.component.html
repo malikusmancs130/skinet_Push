@@ -1,12 +1,102 @@
-<div *ngIf="(basket$ | async) === null">
-<p> There are no items in your basket..</p>
-</div>
+<div class="container" style="margin-top: 0.1%; margin-left: 25%;">
+    <div *ngIf="(basket$ | async) === null">
+        <p> There are no items in your basket..</p>
+    </div>
 
-<div *ngIf="(basket$ | async) as basket">
+    <div *ngIf="(basket$ | async)">
+        <div class="pb-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 py-5 mb-1">
+                        <div class="table-response">
+                            <div class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="boarder-0 bg-light" scope="col">
+                                            <div class="p-2 px-3 text-uppercase">
+                                                products
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="py-2 text-uppercase">
+                                                price
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="py-2 text-uppercase">
+                                                Quantity
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="py-2 text-uppercase">
+                                                Total
+                                            </div>
+                                        </th>
+                                        <th scope="col" class="border-0 bg-light">
+                                            <div class="py-2 text-uppercase">
+                                                Remove
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of (basket$ | async).items">
+                                        <th scope="row">
+                                            <div class="p-2">
+                                                <img class="img-fluid" style="height: 50px;" src="{{item.pictureUrl}}"
+                                                    alt="{{item.productName}}">
+                                                <div class="ml-3 d-inline-block align-middle"
+                                                    style="padding-left: 2em;">
+                                                    <h5 class="mb-0">
+                                                        <a routerLink="/shop/{{item.id}}"
+                                                            class="text-dark">{{item.productName}}</a>
+                                                    </h5>
+                                                    <span class="text-muted font-weight-normal font-italic d-block">
+                                                        Type:{{item.type}}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </th>
+                                        <td class="align-middle">
+                                            <strong>
+                                                {{item.price | currency}}
+                                            </strong>
 
-    <ul>
-        <li *ngFor="let item of basket.items" >
-            {{item.productName}} - {{item.quantity}}
-        </li>
-    </ul>
+                                        </td>
+                                        <td class="align-middle">
+                                            <div class="d-flex align-items-center">
+                                                <i class="fa fa-minus-circle text-warning" (click)="decrementItemQuantity(item)"
+                                                    style="cursor: pointer; font-size:2em; margin-right: 0.3em;"> </i>
+                                                <span class=""
+                                                    style="font-size: 1.5em; font-weight: bold;">{{item.quantity}}</span>
+                                                <i class="fa fa-plus-circle text-warning" (click)="incrementItemQuantity(item)"
+                                                    style="cursor: pointer; font-size:2em; margin-left:0.3em; margin-right: 0.3em; ">
+                                                </i>
+                                            </div>
+                                        </td>
+                                        <td class="align-middle">
+                                            <strong>
+                                                {{item.price * item.quantity | currency}}
+                                            </strong>
+                                        </td>
+                                        <td class="align-middle text-center">
+                                            <a class="text-danger"> <i class="fa fa-trash" (click)="removeBasketItem(item)" style="font-size: 2em; cursor: pointer;">
+
+                                                </i></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 offset 6">
+                        <app-order-totals></app-order-totals>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

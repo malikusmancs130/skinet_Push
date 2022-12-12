@@ -13,13 +13,14 @@
                         <h3>{{product.name}}</h3>
                         <h3>{{product.price | currency}}</h3>
                         <div class="d-flex justify-content-start align-items-center">
-                            <i class="fa fa-minus-circle text-warning"
+                            <i class="fa fa-minus-circle text-warning" (click)="decrementQuantity()"
                                 style="cursor: pointer; font-size:2em; margin-right: 0.3em;"> </i>
-                            <span class="" style="font-size: 1.5em; font-weight: bold;">2</span>
-                            <i class="fa fa-plus-circle text-warning"
+                            <span class="" style="font-size: 1.5em; font-weight: bold;">{{quantity}}</span>
+                            <i class="fa fa-plus-circle text-warning" (click)="incrementQuantity()"
                                 style="cursor: pointer; font-size:2em; margin-left:0.3em; margin-right: 0.3em; ">
                             </i>
-                            <button class="btn btn-outline-secondary btn-lg" style="margin-left: 0.3em;">Add to
+                            <button class="btn btn-outline-primary btn-lg" (click)="addItemToBasket()"
+                            style="margin-left: 0.3em;">Add to
                                 Cart</button>
                         </div>
                     </div>
