@@ -1,15 +1,15 @@
 
-    <div class="bg-light px-4 py-3 text-uppercase" style="font-weight: bold;">
+    <div class="bg-light px-4 py-3 text-uppercase fa fa-list-ol" style="font-weight: bold;">
         Order Summary
     </div>
 
     <div class="p-4">
-        <p class="font-italic mb-4">
+        <p class="font-italic mb-4 fa fa-truck">
             Shipping costs will be added depending on choices made during checkout.
         </p>
         <ul class="list-unstyled mb-4" *ngIf="(basketTotals$ | async) as totals">
             <li class="d-flex justify-content-between py-3 border-bottom">
-                <strong class="text-muted">
+                <strong class="text-muted fa fa-barcode">
                     Order Subtotal
                 </strong>
                 <strong class="text-muted">
@@ -17,18 +17,18 @@
                 </strong>
             </li>
 
-            <li class="d-flex justify-content-between py-3 border-bottom">
-                <strong class="text-muted">
+            <li class="d-flex justify-content-between py-3 border-bottom" >
+                <strong class="text-muted fa fa-paper-plane-o">
                     shipping and handling
                 </strong>
-                <strong class="text-muted">
+                <strong class="text-muted ">
                     {{totals.shipping}}
                 </strong>
             </li>
 
 
             <li class="d-flex justify-content-between py-3 border-bottom">
-                <strong class="text-muted">
+                <strong class="text-muted fa fa-line-chart">
                     Total
                 </strong>
                 <strong class="text-muted">

@@ -4,7 +4,7 @@
         <section class="col-3">
             <ng-container *ngIf="types && brands">
                 <h5 class="text-warning ml-3"  style="margin-top:10px;"> Sorts</h5>
-                <select class="custom-select mb-3" (change)="onSortSelected($event)"  style="margin-top:15px;">
+                <select class="custom-select mb-3" (change)="onSortSelected($event)"  style="margin-top:15px; cursor: pointer;">
                     <option *ngFor="let sortOption of sortOptions" [value]="sortOption.value">
                         {{sortOption.name}}
                     </option>
@@ -33,8 +33,8 @@
                             [pageNumber]="this.shopParams.pageNumber"></app-paging-header>
 
                     </div>
-                    <div class="col"  style="margin-top:5px ;">
-                        <input (keyup.enter)="onSearch()" class="form-control mr-2" #search style="width:300px"
+                    <div class="col "  style="margin-top:5px; ">
+                        <input (keyup.enter)="onSearch()" class="form-control mr-2" #search style="width:300px ;cursor: text;"
                             placeholder="Search" type="text">
                     </div>
                     <div class="col" >
