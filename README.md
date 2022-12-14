@@ -20,6 +20,8 @@ Git Push origion master
 
 # EF migrations
 
+dotnet ef migrations add IdentityInitial -p Infrastructure -s API -c AppIdentityDbContext -o Identity/Migrations
+
 # Angular Extension
 
 install Angular language service and snippet for help.
