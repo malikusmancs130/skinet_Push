@@ -17,9 +17,9 @@
 
         <ng-container *ngIf="(currentUser$ | async) == null">
             <a routerLink="/account/login" class="btn btn-outline-secondary mr-2 fa fa-sign-in"
-                style="margin-left: 12px; font-size: 1.5rem;"> LogIn</a>
+                style="margin-left: 12px; font-size: 1.5rem;">&nbsp;LogIn</a>
             <a routerLink="/account/register" class="btn btn-outline-secondary mr-3 fa fa-sign-out"
-                style="margin-left: 12px; font-size: 1.5rem;"> Sign Up</a>
+                style="margin-left: 12px; font-size: 1.5rem;">&nbsp;Sign Up</a>
         </ng-container>
 
         <ng-container *ngIf="currentUser$ | async">
@@ -38,7 +38,7 @@
 
                     </div>
                     <a (click)="logout()" class="dropdown-item d-flex align-items-center py-2">
-                        <i class="fa fa-sign-out mr-3"></i>&nbsp; LogOut
+                        <i class="fa fa-sign-out mr-3"></i>&nbsp;LogOut
                     </a>
                 </div>
             </div>
