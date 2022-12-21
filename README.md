@@ -22,6 +22,9 @@ Git Push origion master
 
 dotnet ef migrations add IdentityInitial -p Infrastructure -s API -c AppIdentityDbContext -o Identity/Migrations
 
+dotnet ef migrations add OrderEntityAdded -p Infrastructure -s API -c StoreContext
+
+
 # Angular Extension
 
 install Angular language service and snippet for help.

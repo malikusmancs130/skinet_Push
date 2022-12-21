@@ -17,7 +17,7 @@ namespace Infrastructure.Data.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.11");
 
-            modelBuilder.Entity("Core.Entities.orderAggregate.DeliveryMethod", b =>
+            modelBuilder.Entity("Core.Entities.OrderAggregate.DeliveryMethod", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -162,11 +162,11 @@ namespace Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Core.Entities.OrderAggregate.Order", b =>
                 {
-                    b.HasOne("Core.Entities.orderAggregate.DeliveryMethod", "DeliveryMethod")
+                    b.HasOne("Core.Entities.OrderAggregate.DeliveryMethod", "DeliveryMethod")
                         .WithMany()
                         .HasForeignKey("DeliveryMethodId");
 
-                    b.OwnsOne("Core.Entities.orderAggregate.Address", "ShipToAddress", b1 =>
+                    b.OwnsOne("Core.Entities.OrderAggregate.Address", "ShipToAddress", b1 =>
                         {
                             b1.Property<int>("OrderId")
                                 .HasColumnType("INTEGER");
@@ -214,13 +214,13 @@ namespace Infrastructure.Data.Migrations
                             b1.Property<int>("OrderItemId")
                                 .HasColumnType("INTEGER");
 
+                            b1.Property<string>("PicturalUrl")
+                                .HasColumnType("TEXT");
+
                             b1.Property<int>("ProductItemId")
                                 .HasColumnType("INTEGER");
 
                             b1.Property<string>("ProductName")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("ProductUrl")
                                 .HasColumnType("TEXT");
 
                             b1.HasKey("OrderItemId");
