@@ -6,8 +6,8 @@ namespace Infrastructure.Services;
 
 public class OrderService : IOrderService
 {
-    private readonly IBasketRepository _basketRepo;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IBasketRepository _basketRepo;
     public OrderService(IBasketRepository basketRepo, IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
@@ -40,13 +40,13 @@ public class OrderService : IOrderService
 
         _unitOfWork.Repository<Order>().Add(order);
         // TODO: save to db 
-        var results = await _unitOfWork.Complete();
+        var result = await _unitOfWork.Complete();
+        if (result <= 0) return null;
 
-        if(results <= 0) return null;
+        // delete basket
 
-        // delete Basket
         await _basketRepo.DeleteBasketAsync(basketId);
-        
+
         // return order
         return order;
     }
