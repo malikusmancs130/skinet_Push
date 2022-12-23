@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using API.Extensions;
 using AutoMapper;
+using Core.Entities.Identity;
 
 namespace API.Controllers
 {

@@ -21,6 +21,8 @@ Git Push origion master
 # EF migrations
 
 dotnet ef migrations add IdentityInitial -p Infrastructure -s API -c AppIdentityDbContext -o Identity/Migrations
+- Drop database
+ * dotnet ef database drop -p Infrastructure -s API -c StoreContext
 
 # Angular Extension
 
