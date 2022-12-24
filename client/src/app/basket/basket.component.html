@@ -8,90 +8,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12" style="padding-top: 1em;">
-                        <div class="table-response">
-                            <div class="table">
-                                <thead>
-                                    <tr>
-                                        <th class="boarder-0 bg-light" scope="col" style="padding: 3em;">
-                                            <div class="text-uppercase">
-                                                products
-                                            </div>
-                                        </th>
-                                        <th scope="col" class="border-0 bg-light" style="padding: 3em;">
-                                            <div class="text-uppercase">
-                                                price
-                                            </div>
-                                        </th>
-                                        <th scope="col" class="border-0 bg-light" style="padding: 3em;">
-                                            <div class="text-uppercase">
-                                                Quantity
-                                            </div>
-                                        </th>
-                                        <th scope="col" class="border-0 bg-light" style="padding: 3em;">
-                                            <div class="text-uppercase">
-                                                Total
-                                            </div>
-                                        </th>
-                                        <th scope="col" class="border-0 bg-light" style="padding: 3em;">
-                                            <div class="text-uppercase">
-                                                Remove
-                                            </div>
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let item of (basket$ | async).items">
-                                        <th scope="row">
-                                            <div class="" style="padding: 2em;">
-                                                <img class="img-fluid" style="height: 50px;" src="{{item.pictureUrl}}"
-                                                    alt="{{item.productName}}">
-                                                <div class="d-inline-block align-middle" style="margin-left: 3em;"
-                                                    style="padding-left: 2em;">
-                                                    <h5 class="" style="margin-top : 1em;">
-                                                        <a routerLink="/shop/{{item.id}}"
-                                                            class="text-dark">{{item.productName}}</a>
-                                                    </h5>
-                                                    <span class="text-muted font-weight-normal font-italic d-block">
-                                                        Type:{{item.type}}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </th>
-                                        <td class="align-middle" style="padding: 3em;">
-                                            <strong>
-                                                {{item.price | currency}}
-                                            </strong>
-
-                                        </td>
-                                        <td class="align-middle">
-                                            <div class="d-flex align-items-center" style="padding: 2em;">
-                                                <i class="fa fa-minus-circle text-warning" title="Decerese Quantity"
-                                                    (click)="decrementItemQuantity(item)"
-                                                    style="cursor: pointer; font-size:2em; margin-right: 0.3em;"> </i>
-                                                <span class=""
-                                                    style="font-size: 1.5em; font-weight: bold;">{{item.quantity}}</span>
-                                                <i class="fa fa-plus-circle text-warning" title="Incerese Quantity"
-                                                    (click)="incrementItemQuantity(item)"
-                                                    style="cursor: pointer; font-size:2em; margin-left:0.3em; margin-right: 0.3em; ">
-                                                </i>
-                                            </div>
-                                        </td>
-                                        <td class="align-middle">
-                                            <strong style="padding: 2em;">
-                                                {{item.price * item.quantity | currency}}
-                                            </strong>
-                                        </td>
-                                        <td class="align-middle text-center" style="padding: 2em;">
-                                            <a class="text-danger"> <i class="fa fa-trash"
-                                                    (click)="removeBasketItem(item)" title="Delete from Basket"
-                                                    style="font-size: 2em; cursor: pointer;">
-
-                                                </i></a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </div>
-                        </div>
+                       <app-basket-summary
+                         (decrement)="decrementItemQuantity($event)"
+                         (increment)="incrementItemQuantity($event)"
+                         (remove)="removeBasketItem($event)"
+                       ></app-basket-summary>
                     </div>
                 </div>
                 <div class="row d-flex flex-row-reverse">
