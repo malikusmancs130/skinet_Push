@@ -17,7 +17,7 @@ namespace Infrastructure.Identity.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.11");
 
-            modelBuilder.Entity("Core.Identity.Address", b =>
+            modelBuilder.Entity("Core.Entities.Identity.Address", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -248,11 +248,11 @@ namespace Infrastructure.Identity.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Core.Identity.Address", b =>
+            modelBuilder.Entity("Core.Entities.Identity.Address", b =>
                 {
                     b.HasOne("Core.Identity.AppUser", "AppUser")
                         .WithOne("Address")
-                        .HasForeignKey("Core.Identity.Address", "AppUserId")
+                        .HasForeignKey("Core.Entities.Identity.Address", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

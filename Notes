@@ -1,0 +1,21 @@
+When we create class, just do 
+
+Class abc : BaseEntity
+{
+
+}
+then generate constructor of abc class. it will be helpful when we generate table in db.
+
+
+2- process for create any control.
+   
+   1- Create its Iinterface abc
+   2- Initital its method
+   3- now create another interface and inheart already created Iinterface abc.
+   4- implete its method here.
+
+3- In controller Now your task is to call Interface and decalre its private method
+   2- Now create constructor of class and Inititalized obj.
+   3- Now create async method with the help of HttpGet,put or post method etc..
+   4- return 
+
