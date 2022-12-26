@@ -33,11 +33,11 @@
             <tbody>
                 <tr *ngFor="let item of (basket$ | async).items">
                     <th scope="row">
-                        <div class="" style="padding: 2em;">
+                        <div class="" style="padding: 1em;">
                             <img class="img-fluid" style="height: 50px;" src="{{item.pictureUrl}}"
                                 alt="{{item.productName}}">
                             <div class="d-inline-block align-middle" style="margin-left: 3em;"
-                                style="padding-left: 2em;">
+                                style="padding-left: 1em;">
                                 <h5 class="" style="margin-top : 1em;">
                                     <a routerLink="/shop/{{item.id}}" class="text-dark">{{item.productName}}</a>
                                 </h5>

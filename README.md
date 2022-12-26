@@ -39,6 +39,7 @@ ng g c component-name --skip-tests
 ng g m core (Create core module)
 ng g c shop --flat --skip-tests
 ng g s shop --flat --skip-tests (it will create service inside the shop folder. Flat will not allow him to add new folder)
+ng generate module Component_Name-routing --flat
 # CSS
 
 - flexboxfroggy
@@ -47,3 +48,8 @@ ng g s shop --flat --skip-tests (it will create service inside the shop folder. 
 
 By using this website, we can change anytheme design. Just go to angular json file, where we define bootswatch change theme name and reload the application. everything is setup.
  https://bootswatch.com/
+
+# SQL Query 
+
+ALTER TABLE Orders
+RENAME COLUMN OldName TO newName;

@@ -5,9 +5,14 @@
     <h2>Thank you. You order is confirmed.</h2>
     <p class="">Your order has not shipped yet,but this is to be expected.. as we are real store!</p>
 
-    <button class="btn btn-outline-success">
+    <button *ngIf="order" routerLink="/orders/{{order?.id}}" class="btn btn-outline-success">
         <i class="fa fa-first-order"></i>
         View Your Order
+    </button>
+    &nbsp;
+    <button *ngIf="!order" routerLink="/orders" class="btn btn-outline-primary">
+        <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        Go Back
     </button>
     &nbsp;
     <button class="btn btn-outline-primary">
