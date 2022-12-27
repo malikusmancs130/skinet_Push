@@ -1,13 +1,12 @@
 <div class="" style="margin-top: 2em;">
-<app-basket-summary
-  [isBasket]="false"
-></app-basket-summary>
+  <app-basket-summary [isBasket]="false">
+  </app-basket-summary>
 </div>
 <div class="float-none d-flex justify-content-between flex-column flex-lg-row" style="margin: 2em;">
   <button class="btn btn-outline-primary" cdkStepperPrevious>
-      <i class="fa fa-angle-left"></i> Back to Delivery
+    <i class="fa fa-angle-left"></i> Back to Delivery
   </button>
-  <button class="btn btn-primary" cdkStepperNext>
-      Got to Payment  <i class="fa fa-angle-right"></i> 
+  <button class="btn btn-primary" cdkStepperNext (click)="createPaymentIntent()" >
+    Got to Payment <i class="fa fa-angle-right"></i>
   </button>
 </div>

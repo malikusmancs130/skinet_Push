@@ -12,30 +12,44 @@ import { IProduct } from '../shared/models/product';
 })
 export class BasketService {
 
-  setShippingPrice(deliveryMethod: IDeliveryMethod) {
-    this.shipping=deliveryMethod.price;
-    this.calculateTotals();
-
-  }
-
   baseUrl = environment.apiUrl;
-
   private basketSource = new BehaviorSubject<IBasket>(null);
   basket$ = this.basketSource.asObservable();
   private basketTotalSource = new BehaviorSubject<IBasketTotals>(null);
   basketTotal$ = this.basketTotalSource.asObservable();
   shipping = 0;
 
+  createPaymentIntent() {
+    return this.http.post(this.baseUrl + 'payments/' + this.getCurrentBasketValue().id, {})
+      .pipe(
+        map((basket: IBasket) => {
+          this.basketSource.next(basket);
+        })
+      );
+  }
+
+  setShippingPrice(deliveryMethod: IDeliveryMethod) {
+    this.shipping = deliveryMethod.price;
+    const basket = this.getCurrentBasketValue();
+    basket.deliveryMethodId = deliveryMethod.id;
+    basket.shippingPrice = deliveryMethod.price;
+    this.calculateTotals();
+    this.setBasket(basket);
+  }
+
+
   constructor(private http: HttpClient) {
   }
 
   getBasket(id: string) {
-    return this.http.get(this.baseUrl + 'basket?id=' + id).pipe(
-      map((basket: IBasket) => {
-        this.basketSource.next(basket);
-        this.calculateTotals();
-      })
-    );
+    return this.http.get(this.baseUrl + 'basket?id=' + id)
+      .pipe(
+        map((basket: IBasket) => {
+          this.basketSource.next(basket);
+          this.shipping = basket.shippingPrice;
+          this.calculateTotals();
+        })
+      );
   }
 
 
@@ -92,8 +106,7 @@ export class BasketService {
     }
   }
 
-  deleteLocalBasket(id: string)
-  {
+  deleteLocalBasket(id: string) {
     this.basketSource.next(null);
     this.basketTotalSource.next(null);
     localStorage.removeItem('basket_id');
@@ -111,7 +124,7 @@ export class BasketService {
   }
 
   // Private Methods are here 
-  
+
   private calculateTotals() {
     const basket = this.getCurrentBasketValue();
     const shipping = this.shipping;
