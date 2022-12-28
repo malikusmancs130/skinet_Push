@@ -9,8 +9,10 @@ public class OrderService : IOrderService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IBasketRepository _basketRepo;
-    public OrderService(IBasketRepository basketRepo, IUnitOfWork unitOfWork)
+    private readonly IPaymentService _paymentService;
+    public OrderService(IBasketRepository basketRepo, IUnitOfWork unitOfWork, IPaymentService paymentService)
     {
+        _paymentService = paymentService;
         _unitOfWork = unitOfWork;
         _basketRepo = basketRepo;
     }
@@ -30,14 +32,26 @@ public class OrderService : IOrderService
             var orderItem = new OrderItem(itemOrdered, productItem.Price, item.Quantity);
             items.Add(orderItem);
         }
-        // get delivery method from repo
 
+        // get delivery method from repo
         var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(deliveryMethodId);
+
         // cals subtotal
         var subtotal = items.Sum(item => item.Price * item.Quantity);
+
+        //check to see if order exists
+        var spec = new OrderByPaymentIntendIdSpecification(basket.PaymentIntendId);
+        var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
+
+        if (existingOrder != null)
+        {
+            _unitOfWork.Repository<Order>().Delete(existingOrder);
+            await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntendId);
+        }
+
         // create total 
 
-        var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal);
+        var order = new Order(items, buyerEmail, shippingAddress, deliveryMethod, subtotal, basket.PaymentIntendId);
 
         _unitOfWork.Repository<Order>().Add(order);
         // TODO: save to db 
@@ -46,7 +60,7 @@ public class OrderService : IOrderService
 
         // delete basket
 
-        await _basketRepo.DeleteBasketAsync(basketId);
+      // await _basketRepo.DeleteBasketAsync(basketId);
 
         // return order
         return order;
@@ -59,14 +73,14 @@ public class OrderService : IOrderService
 
     public async Task<Order> GetOrderByIdAsync(int id, string buyerEmail)
     {
-         var spec = new OrderWithItemsAndOrderingSpecification (id,buyerEmail);
-         return await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
+        var spec = new OrderWithItemsAndOrderingSpecification(id, buyerEmail);
+        return await _unitOfWork.Repository<Order>().GetEntityWithSpec(spec);
     }
 
     public async Task<IReadOnlyList<Order>> GetOrderForUserAsync(string buyerEmail)
     {
-       var spec = new OrderWithItemsAndOrderingSpecification (buyerEmail);
-       
-       return await _unitOfWork.Repository<Order>().ListAsync(spec);
+        var spec = new OrderWithItemsAndOrderingSpecification(buyerEmail);
+
+        return await _unitOfWork.Repository<Order>().ListAsync(spec);
     }
 }
