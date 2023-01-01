@@ -15,11 +15,8 @@ namespace API.Controllers
     public class PaymentsController : BaseApiController
     {
         private readonly IPaymentService _paymentService;
-<<<<<<< HEAD
-        private const string WhSecret = "";
-=======
-        private const string WebHookSecret = "";
->>>>>>> 99a53ebc3eaa9202124649c0102a2c36ce206fda
+        private const string WhSecret = "whsec_a39e3d6e6c51db908643b0c64d9f05b522645051dbabb795bee2d3932352520a";
+
         private readonly ILogger<PaymentService> _logger;
         public PaymentsController(IPaymentService paymentService, ILogger<PaymentService> logger)
         {
@@ -45,20 +42,20 @@ namespace API.Controllers
             WhSecret);
 
             PaymentIntent intent;
-           Order order;
+            Order order;
 
             switch (stripeEvent.Type)
             {
                 case "payment_intent.succeeded":
                     intent = (PaymentIntent)stripeEvent.Data.Object;
                     _logger.LogInformation("Payment Succeeded", intent.Id);
-                     order = await _paymentService.UpdateOrderPaymentSucceeded(intent.Id);
+                    order = await _paymentService.UpdateOrderPaymentSucceeded(intent.Id);
                     _logger.LogInformation("Order updated to payment received :", order.Id);
                     break;
                 case "payment_intent.failed":
                     intent = (PaymentIntent)stripeEvent.Data.Object;
                     _logger.LogInformation("Payment Failed", intent.Id);
-                     order = await _paymentService.UpdateOrderPaymentFailed(intent.Id);
+                    order = await _paymentService.UpdateOrderPaymentFailed(intent.Id);
                     _logger.LogInformation("Payment Failed: ", order.Id);
                     break;
             }
